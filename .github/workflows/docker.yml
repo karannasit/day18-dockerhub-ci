@@ -5,11 +5,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Login to DockerHub
@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/day18-app:latest .
+        run: docker build -t karannasit/day18-app .
 
       - name: Push Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/day18-app:latest
+        run: docker push karannasit/day18-app
